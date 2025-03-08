@@ -25,7 +25,7 @@ import { CentersDataSource } from './centers.datasource';
   styleUrls: ['./centers.component.scss']
 })
 export class CentersComponent implements OnInit, AfterViewInit {
-  @ViewChild('showClosedCenters', { static: true }) showClosedCenters: MatCheckbox;
+  @ViewChild('showclosedcenters', { static: true }) showclosedcenters: MatCheckbox;
 
   /** Name form control. */
   name = new UntypedFormControl();
@@ -100,7 +100,7 @@ export class CentersComponent implements OnInit, AfterViewInit {
   /**
    * Reloads page on changing show closed centers checkbox
    */
-  changeShowClosedCenters() {
+  changeshowclosedcenters() {
     this.loadCentersPage();
   }
 
@@ -117,7 +117,7 @@ export class CentersComponent implements OnInit, AfterViewInit {
       this.sort.direction,
       this.paginator.pageIndex,
       this.paginator.pageSize,
-      !this.showClosedCenters.checked
+      !this.showclosedcenters.checked
     );
   }
 
