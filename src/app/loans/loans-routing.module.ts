@@ -37,6 +37,7 @@ import { ExportTransactionsComponent } from './loans-view/transactions/export-tr
 import { GlimAccountComponent } from './glim-account/glim-account.component';
 import { CreateGlimAccountComponent } from './glim-account/create-glim-account/create-glim-account.component';
 import { LoanBuyDownFeesTabComponent } from './loans-view/loan-buy-down-fees-tab/loan-buy-down-fees-tab.component';
+import { LoanAccountDashboardComponent } from './loans-view/loan-account-dashboard/loan-account-dashboard.component';
 
 /** Custom Resolvers */
 import { LoanDetailsResolver } from './common-resolvers/loan-details.resolver';
@@ -74,6 +75,8 @@ import { LoanTermVariationsResolver } from './common-resolvers/loan-term-variati
 import { LoanDeferredIncomeTabComponent } from './loans-view/loan-deferred-income-tab/loan-deferred-income-tab.component';
 import { LoanDeferredIncomeDataResolver } from './common-resolvers/loan-deferred-income-data.resolver';
 import { LoanBuyDownFeesDataResolver } from './common-resolvers/loan-buy-down-fees-data.resolver';
+import { LoanOriginatorsTabComponent } from './loans-view/loan-originators-tab/loan-originators-tab.component';
+import { LoanOriginatorsResolver } from './common-resolvers/loan-originators.resolver';
 
 /** Loans Route. */
 const routes: Routes = [
@@ -108,10 +111,12 @@ const routes: Routes = [
             path: 'general',
             component: GeneralTabComponent,
             data: { title: 'General', breadcrumb: 'General', routeParamBreadcrumb: false },
-            resolve: {
-              loanDetailsData: LoanDetailsResolver,
-              loanDatatables: LoanDatatablesResolver
-            }
+            resolve: {}
+          },
+          {
+            path: 'dashboard',
+            component: LoanAccountDashboardComponent,
+            data: { title: 'Dashboard', breadcrumb: 'Dashboard', routeParamBreadcrumb: false }
           },
           {
             path: 'accountdetail',
@@ -268,6 +273,19 @@ const routes: Routes = [
                 resolve: {
                   loanDatatable: LoanDatatableResolver
                 }
+              }
+            ]
+          },
+          {
+            path: 'originators',
+            data: { title: 'Loans Originators', breadcrumb: 'Originators', routeParamBreadcrumb: false },
+            resolve: {
+              loanOriginatorsData: LoanOriginatorsResolver
+            },
+            children: [
+              {
+                path: '',
+                component: LoanOriginatorsTabComponent
               }
             ]
           },
